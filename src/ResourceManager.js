@@ -4,10 +4,15 @@ const MIN = 0
 const MAX = 8
 
 class ResourceManager extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            resources: {...this.props.resources},
+            resources: {
+                'coin': 1,
+                'worker': 1,
+                'food': 1,
+                'culture': 1,
+            },
         }
     }
 
@@ -47,10 +52,14 @@ class ResourceManager extends Component {
                     {this.state.resources[resourceName]}
                 </h2>
             </div>
-            <button class='PlusMinusButton' onClick={this.Increase(resourceName)}>
+            <button className='PlusMinusButton'
+                    onClick={this.Increase(resourceName)}
+            >
                 +
             </button>
-            <button class='PlusMinusButton' onClick={this.Decrease(resourceName)}>
+            <button className='PlusMinusButton'
+                    onClick={this.Decrease(resourceName)}
+            >
                 -
             </button>
         </div>
