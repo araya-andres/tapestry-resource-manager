@@ -47,7 +47,7 @@ class ResourceManager extends Component {
             <div>
                 {
                     Object.keys(resources).map(resource => (
-                        <div>
+                        <div key={resource}>
                         <img src={`./images/${resource}.png`} height="20"/>
                         <h2>{resources[resource]}</h2>
                         <button onClick={this.Increase(resource)}>+</button>
