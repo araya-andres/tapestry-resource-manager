@@ -41,23 +41,28 @@ class ResourceManager extends Component {
         }
     }
 
-    render() {
-        const resources = this.state.resources
-        return (
-            <div>
-                {
-                    Object.keys(resources).map(resource => (
-                        <div key={resource}>
-                        <img src={`./images/${resource}.png`} height="20"/>
-                        <h2>{resources[resource]}</h2>
-                        <button onClick={this.Increase(resource)}>+</button>
-                        <button onClick={this.Decrease(resource)}>-</button>
-                        </div>
-                    ))
-                }
+    MakePlusMinusControl = resourceName => (
+        <div key={resourceName} className='PlusMinusBox'>
+            <div className='ResourcePicture'>
+                <img src={`./images/${resourceName}.png`} height="30"/>
             </div>
-        )
-    }
+            <div className='ResourceValue'>
+                <h2>{this.state.resources[resourceName]}</h2>
+            </div>
+            <button class='PlusMinusButton' onClick={this.Increase(resourceName)}>+</button>
+            <button class='PlusMinusButton' onClick={this.Decrease(resourceName)}>-</button>
+        </div>
+    )
+
+    render = () => (
+        <div>
+            {
+                Object.keys(this.state.resources).map(resource =>
+                    this.MakePlusMinusControl(resource)
+                )
+            }
+        </div>
+    )
 }
 
 export default ResourceManager

@@ -1,3 +1,25 @@
 body {
     background-color: #fcf5e8;
 }
+
+.PlusMinusBox {
+    display: inline-block;
+    margin: 10px;
+}
+
+.ResourcePicture {
+    display: flex;
+    justify-content: center;
+}
+
+.ResourceValue {
+    display: flex;
+    justify-content: center;
+}
+
+.PlusMinusButton {
+    font-size: large;
+    height: 30px;
+    width: 30px;
+    margin: 2px;
+}
