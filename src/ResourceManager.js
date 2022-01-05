@@ -80,9 +80,7 @@ class ResourceManager extends Component {
   );
 
   GetButtonStyle = () =>
-    `BigButton ${
-      this.state.hasChanged ? "BigButtonActive" : "BigButtonInactive"
-    }`;
+    `Button ${this.state.hasChanged ? "ButtonActive" : "ButtonInactive"}`;
 
   MakeButtons = () => (
     <div className="Buttons">
