@@ -5,17 +5,18 @@ const MAX = 8;
 const IMG_HEIGHT = 30;
 
 const makeConstant = (value) => ({
-    coin: value,
-    worker: value,
-    food: value,
-    culture: value,
+  coin: value,
+  worker: value,
+  food: value,
+  culture: value,
 });
 
 const zero = () => makeConstant(0);
 
 const one = () => makeConstant(1);
 
-const isZero = (resources) => Object.values(resources).every(value => value === 0);
+const isZero = (resources) =>
+  Object.values(resources).every((value) => value === 0);
 
 class ResourceManager extends Component {
   resources = one();
