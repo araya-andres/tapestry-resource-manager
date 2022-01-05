@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 const MIN = 0;
 const MAX = 8;
+const IMG_HEIGHT = 30;
 
 class ResourceManager extends Component {
   constructor() {
@@ -45,7 +46,11 @@ class ResourceManager extends Component {
   MakePlusMinusControl = (resourceName) => (
     <div key={resourceName} className="PlusMinusBox">
       <div className="ResourcePicture">
-        <img src={`./images/${resourceName}.png`} height="30" />
+        <img
+          src={`./images/${resourceName}.png`}
+          alt={resourceName}
+          height={IMG_HEIGHT}
+        />
       </div>
       <div className="ResourceValue">
         <h2>{this.state.resources[resourceName]}</h2>
