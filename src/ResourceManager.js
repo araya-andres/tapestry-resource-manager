@@ -5,42 +5,51 @@ const MAX = 8;
 const IMG_HEIGHT = 30;
 
 class ResourceManager extends Component {
+  resources = {
+    coin: 1,
+    worker: 1,
+    food: 1,
+    culture: 1,
+  };
+
   constructor() {
     super();
     this.state = {
       resources: {
-        coin: 1,
-        worker: 1,
-        food: 1,
-        culture: 1,
+        ...this.resources,
       },
+      hasChanged: false,
     };
   }
 
-  Increase = (resourceName) => () => {
+  IncreaseOrDecreaseResource = (resourceName, delta) => () => {
     const resources = this.state.resources;
-    const amount = resources[resourceName];
-    if (amount < MAX) {
+    const newAmount = resources[resourceName] + delta;
+    if (MIN <= newAmount && newAmount <= MAX) {
       this.setState({
         resources: {
           ...resources,
-          [resourceName]: amount + 1,
+          [resourceName]: newAmount,
         },
+        hasChanged: this.resources[resourceName] !== newAmount,
       });
     }
   };
 
-  Decrease = (resourceName) => () => {
-    const resources = this.state.resources;
-    const amount = resources[resourceName];
-    if (amount > MIN) {
-      this.setState({
-        resources: {
-          ...resources,
-          [resourceName]: amount - 1,
-        },
-      });
-    }
+  Accept = () => {
+    this.resources = { ...this.state.resources };
+    this.setState({
+      hasChanged: false,
+    });
+  };
+
+  Cancel = () => {
+    this.setState({
+      resources: {
+        ...this.resources,
+      },
+      hasChanged: false,
+    });
   };
 
   MakePlusMinusControl = (resourceName) => (
@@ -55,11 +64,28 @@ class ResourceManager extends Component {
       <div className="ResourceValue">
         <h2>{this.state.resources[resourceName]}</h2>
       </div>
-      <button className="PlusMinusButton" onClick={this.Increase(resourceName)}>
+      <button
+        className="PlusMinusButton"
+        onClick={this.IncreaseOrDecreaseResource(resourceName, -1)}
+      >
+        -
+      </button>
+      <button
+        className="PlusMinusButton"
+        onClick={this.IncreaseOrDecreaseResource(resourceName, +1)}
+      >
         +
       </button>
-      <button className="PlusMinusButton" onClick={this.Decrease(resourceName)}>
-        -
+    </div>
+  );
+
+  MakeButtons = () => (
+    <div>
+      <button onClick={this.Accept} disabled={!this.state.hasChanged}>
+        Accept
+      </button>
+      <button onClick={this.Cancel} disabled={!this.state.hasChanged}>
+        Cancel
       </button>
     </div>
   );
@@ -69,6 +95,7 @@ class ResourceManager extends Component {
       {Object.keys(this.state.resources).map((resource) =>
         this.MakePlusMinusControl(resource)
       )}
+      {this.MakeButtons()}
     </div>
   );
 }
