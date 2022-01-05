@@ -79,14 +79,19 @@ class ResourceManager extends Component {
     </div>
   );
 
+  GetButtonStyle = () =>
+    `BigButton ${
+      this.state.hasChanged ? "BigButtonActive" : "BigButtonInactive"
+    }`;
+
   MakeButtons = () => (
-    <div>
-      <button onClick={this.Accept} disabled={!this.state.hasChanged}>
+    <div className="Buttons">
+      <div className={this.GetButtonStyle()} onClick={this.Accept}>
         Accept
-      </button>
-      <button onClick={this.Cancel} disabled={!this.state.hasChanged}>
+      </div>
+      <div className={this.GetButtonStyle()} onClick={this.Cancel}>
         Cancel
-      </button>
+      </div>
     </div>
   );
 
@@ -95,7 +100,7 @@ class ResourceManager extends Component {
       {Object.keys(this.state.resources).map((resource) =>
         this.MakePlusMinusControl(resource)
       )}
-      {this.MakeButtons()}
+      <div>{this.MakeButtons()}</div>
     </div>
   );
 }
