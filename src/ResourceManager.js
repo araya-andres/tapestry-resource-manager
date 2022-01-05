@@ -4,13 +4,22 @@ const MIN = 0;
 const MAX = 8;
 const IMG_HEIGHT = 30;
 
+const makeConstant = (value) => ({
+    coin: value,
+    worker: value,
+    food: value,
+    culture: value,
+});
+
+const zero = () => makeConstant(0);
+
+const one = () => makeConstant(1);
+
+const isZero = (resources) => Object.values(resources).every(value => value === 0);
+
 class ResourceManager extends Component {
-  resources = {
-    coin: 1,
-    worker: 1,
-    food: 1,
-    culture: 1,
-  };
+  resources = one();
+  diff = zero();
 
   constructor() {
     super();
@@ -26,24 +35,27 @@ class ResourceManager extends Component {
     const resources = this.state.resources;
     const newAmount = resources[resourceName] + delta;
     if (MIN <= newAmount && newAmount <= MAX) {
+      this.diff[resourceName] += delta;
       this.setState({
         resources: {
           ...resources,
           [resourceName]: newAmount,
         },
-        hasChanged: this.resources[resourceName] !== newAmount,
+        hasChanged: !isZero(this.diff),
       });
     }
   };
 
   Accept = () => {
     this.resources = { ...this.state.resources };
+    this.diff = zero();
     this.setState({
       hasChanged: false,
     });
   };
 
   Cancel = () => {
+    this.diff = zero();
     this.setState({
       resources: {
         ...this.resources,
