@@ -1,39 +1,13 @@
-import pluralize from "pluralize";
 import React, { Component } from "react";
+import * as resources from "./Resources";
 
 const MIN = 0;
 const MAX = 8;
 const IMG_HEIGHT = 30;
 
-const makeConstant = (value) => ({
-  coin: value,
-  worker: value,
-  food: value,
-  culture: value,
-});
-
-const zero = () => makeConstant(0);
-
-const one = () => makeConstant(1);
-
-const isZero = (resources) =>
-  Object.values(resources).every((value) => value > 0);
-
-const sum = (resources) =>
-  Object.values(resources).reduce((acc, value) => acc + value, 0);
-
-const getMessage = (resources) => {
-  const total = sum(resources);
-  if (total === 0) return "";
-  const count = Math.abs(total);
-  return `${count} ${pluralize("resource", count)} ${
-    total < 0 ? "spent" : "earned"
-  }`;
-};
-
 class ResourceManager extends Component {
-  resources = one();
-  diff = zero();
+  resources = resources.one();
+  diff = resources.zero();
 
   constructor() {
     super();
@@ -55,21 +29,21 @@ class ResourceManager extends Component {
           ...resources,
           [resourceName]: newAmount,
         },
-        hasChanged: !isZero(this.diff),
+        hasChanged: !resources.isZero(this.diff),
       });
     }
   };
 
   accept = () => {
     this.resources = { ...this.state.resources };
-    this.diff = zero();
+    this.diff = resources.zero();
     this.setState({
       hasChanged: false,
     });
   };
 
   cancel = () => {
-    this.diff = zero();
+    this.diff = resources.zero();
     this.setState({
       resources: {
         ...this.resources,
@@ -125,7 +99,7 @@ class ResourceManager extends Component {
         this.drawPlusMinusControl(resource)
       )}
       <div>
-        <p>{getMessage(this.diff)}</p>
+        <p>{resources.asString(this.diff)}</p>
       </div>
       <div>{this.drawButtons()}</div>
     </div>
