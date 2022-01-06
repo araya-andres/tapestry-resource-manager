@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import * as Resources from "./Resources";
 
-const MIN = 0;
-const MAX = 8;
 const IMG_HEIGHT = 30;
 
 class ResourceManager extends Component {
@@ -15,21 +13,19 @@ class ResourceManager extends Component {
       resources: {
         ...this.resources,
       },
-      hasChanged: false,
     };
   }
 
   increaseOrDecreaseResource = (resourceName, delta) => () => {
     const resources = this.state.resources;
     const newAmount = resources[resourceName] + delta;
-    if (MIN <= newAmount && newAmount <= MAX) {
+    if (Resources.MIN <= newAmount && newAmount <= Resources.MAX) {
       this.diff[resourceName] += delta;
       this.setState({
         resources: {
           ...resources,
           [resourceName]: newAmount,
         },
-        hasChanged: !Resources.isZero(this.diff),
       });
     }
   };
@@ -37,9 +33,6 @@ class ResourceManager extends Component {
   accept = () => {
     this.resources = { ...this.state.resources };
     this.diff = Resources.zero();
-    this.setState({
-      hasChanged: false,
-    });
   };
 
   cancel = () => {
@@ -48,12 +41,11 @@ class ResourceManager extends Component {
       resources: {
         ...this.resources,
       },
-      hasChanged: false,
     });
   };
 
   getButtonStyle = () =>
-    `Button ${this.state.hasChanged ? "ButtonActive" : "ButtonInactive"}`;
+    `Button ${Resources.isZero(this.diff) ? "ButtonInactive" : "ButtonActive"}`;
 
   drawPlusMinusControl = (resourceName) => (
     <div key={resourceName} className="PlusMinusBox">
@@ -82,6 +74,20 @@ class ResourceManager extends Component {
     </div>
   );
 
+  drawPlusMinusControls = () => (
+    <div>
+      {Object.keys(this.state.resources).map((resource) =>
+        this.drawPlusMinusControl(resource)
+      )}
+    </div>
+  );
+
+  drawText = () => (
+    <div>
+      <p>{Resources.toString(this.diff)}</p>
+    </div>
+  );
+
   drawButtons = () => (
     <div className="Buttons">
       <div className={this.getButtonStyle()} onClick={this.accept}>
@@ -95,13 +101,9 @@ class ResourceManager extends Component {
 
   render = () => (
     <div>
-      {Object.keys(this.state.resources).map((resource) =>
-        this.drawPlusMinusControl(resource)
-      )}
-      <div>
-        <p>{Resources.toString(this.diff)}</p>
-      </div>
-      <div>{this.drawButtons()}</div>
+      {this.drawPlusMinusControls()}
+      {this.drawText()}
+      {this.drawButtons()}
     </div>
   );
 }
