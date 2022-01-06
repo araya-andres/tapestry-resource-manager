@@ -9,8 +9,8 @@ const makeConstant = (value) => ({
 
 export const MIN = 0;
 export const MAX = 8;
-export const zero = () => makeConstant(0);
-export const one = () => makeConstant(1);
+export const ZERO = makeConstant(0);
+export const ONE = makeConstant(1);
 
 export const isZero = (resources) =>
   Object.values(resources).every((value) => value === 0);

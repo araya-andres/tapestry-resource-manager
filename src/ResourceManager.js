@@ -4,15 +4,13 @@ import * as Resources from "./Resources";
 const IMG_HEIGHT = 30;
 
 class ResourceManager extends Component {
-  resources = Resources.one();
-  diff = Resources.zero();
+  resources = Resources.ONE;
+  diff = Resources.ZERO;
 
   constructor() {
     super();
     this.state = {
-      resources: {
-        ...this.resources,
-      },
+      resources: this.resources,
     };
   }
 
@@ -20,7 +18,10 @@ class ResourceManager extends Component {
     const resources = this.state.resources;
     const newAmount = resources[resourceName] + delta;
     if (Resources.MIN <= newAmount && newAmount <= Resources.MAX) {
-      this.diff[resourceName] += delta;
+      this.diff = {
+        ...this.diff,
+        [resourceName]: this.diff[resourceName] + delta,
+      };
       this.setState({
         resources: {
           ...resources,
@@ -31,16 +32,14 @@ class ResourceManager extends Component {
   };
 
   accept = () => {
-    this.resources = { ...this.state.resources };
-    this.diff = Resources.zero();
+    this.resources = this.state.resources;
+    this.diff = Resources.ZERO;
   };
 
   cancel = () => {
-    this.diff = Resources.zero();
+    this.diff = Resources.ZERO;
     this.setState({
-      resources: {
-        ...this.resources,
-      },
+      resources: this.resources,
     });
   };
 
