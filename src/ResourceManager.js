@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import * as resources from "./Resources";
+import * as Resources from "./Resources";
 
 const MIN = 0;
 const MAX = 8;
 const IMG_HEIGHT = 30;
 
 class ResourceManager extends Component {
-  resources = resources.one();
-  diff = resources.zero();
+  resources = Resources.one();
+  diff = Resources.zero();
 
   constructor() {
     super();
@@ -29,21 +29,21 @@ class ResourceManager extends Component {
           ...resources,
           [resourceName]: newAmount,
         },
-        hasChanged: !resources.isZero(this.diff),
+        hasChanged: !Resources.isZero(this.diff),
       });
     }
   };
 
   accept = () => {
     this.resources = { ...this.state.resources };
-    this.diff = resources.zero();
+    this.diff = Resources.zero();
     this.setState({
       hasChanged: false,
     });
   };
 
   cancel = () => {
-    this.diff = resources.zero();
+    this.diff = Resources.zero();
     this.setState({
       resources: {
         ...this.resources,
@@ -99,7 +99,7 @@ class ResourceManager extends Component {
         this.drawPlusMinusControl(resource)
       )}
       <div>
-        <p>{resources.asString(this.diff)}</p>
+        <p>{Resources.toString(this.diff)}</p>
       </div>
       <div>{this.drawButtons()}</div>
     </div>
