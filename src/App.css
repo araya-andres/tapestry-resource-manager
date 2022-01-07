@@ -4,6 +4,10 @@ body {
   font-size: large;
 }
 
+.ResourceManager {
+  width: fit-content;
+}
+
 .PlusMinusBox {
   display: inline-block;
   margin: 10px;
@@ -23,6 +27,11 @@ body {
   height: 30px;
   width: 30px;
   margin: 2px;
+}
+
+.Text {
+  display: flex;
+  justify-content: center;
 }
 
 .Buttons {

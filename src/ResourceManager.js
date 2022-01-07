@@ -82,7 +82,7 @@ class ResourceManager extends Component {
   );
 
   drawText = () => (
-    <div>
+    <div className="Text">
       <p>{Resources.toString(this.diff)}</p>
     </div>
   );
@@ -99,7 +99,7 @@ class ResourceManager extends Component {
   );
 
   render = () => (
-    <div>
+    <div className="ResourceManager">
       {this.drawPlusMinusControls()}
       {this.drawText()}
       {this.drawButtons()}
