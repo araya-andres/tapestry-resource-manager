@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  trm:
-    container_name: trm
+  front-end-dev:
+    container_name: front-end-dev
     build:
       context: .
       dockerfile: Dockerfile
