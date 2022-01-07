@@ -15,14 +15,16 @@ export const ONE = makeConstant(1);
 export const isZero = (resources) =>
   Object.values(resources).every((value) => value === 0);
 
-export const sum = (resources) =>
-  Object.values(resources).reduce((acc, value) => acc + value, 0);
-
 export const toString = (resources) => {
-  const total = sum(resources);
-  if (total === 0) return "0 resources spent or earned";
-  const count = Math.abs(total);
-  return `${count} ${pluralize("resource", count)} ${
-    total < 0 ? "spent" : "earned"
-  }`;
+  const values = Object.values(resources);
+  const spent = values
+    .filter((x) => x < 0)
+    .reduce((acc, value) => acc - value, 0);
+  const earned = values
+    .filter((x) => x > 0)
+    .reduce((acc, value) => acc + value, 0);
+  return (
+    `${spent} ${pluralize("resource", spent)} spent, ` +
+    `${earned} ${pluralize("resource", earned)} earned.`
+  );
 };
