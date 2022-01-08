@@ -1,0 +1,19 @@
+.Button {
+  text-align: center;
+  padding: 1em 0 1em 0;
+  width: 50%;
+  margin: 10px;
+  border-radius: 7px;
+  color: rgb(250, 244, 230);
+}
+
+.Active {
+  background-color: rgb(168, 73, 75);
+  cursor: pointer;
+}
+
+.Inactive {
+  background-color: rgb(189, 168, 93);
+  cursor: default;
+  opacity: 0.7;
+}

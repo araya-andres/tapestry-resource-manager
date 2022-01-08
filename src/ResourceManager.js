@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as Resources from "./Resources";
-
-const IMG_HEIGHT = 40;
+import Counter from "./Counter";
+import Button from "./Button";
 
 class ResourceManager extends Component {
   resources = Resources.ONE;
@@ -14,18 +14,18 @@ class ResourceManager extends Component {
     };
   }
 
-  increaseOrDecreaseResource = (resourceName, delta) => () => {
+  increaseBy = (resource, delta) => () => {
     const resources = this.state.resources;
-    const newAmount = resources[resourceName] + delta;
+    const newAmount = resources[resource] + delta;
     if (Resources.MIN <= newAmount && newAmount <= Resources.MAX) {
       this.diff = {
         ...this.diff,
-        [resourceName]: this.diff[resourceName] + delta,
+        [resource]: this.diff[resource] + delta,
       };
       this.setState({
         resources: {
           ...resources,
-          [resourceName]: newAmount,
+          [resource]: newAmount,
         },
       });
     }
@@ -46,43 +46,18 @@ class ResourceManager extends Component {
     });
   };
 
-  getButtonStyle = () =>
-    `Button ${Resources.isZero(this.diff) ? "ButtonInactive" : "ButtonActive"}`;
-
-  drawPlusMinusControl = (resourceName) => (
-    <div key={resourceName} className="PlusMinusBox">
-      <div className="ResourcePicture">
-        <img
-          src={`./images/${resourceName}.png`}
-          alt={resourceName}
-          height={IMG_HEIGHT}
+  drawCounters = () => (
+    <div className="Counters">
+      {Object.keys(this.state.resources).map((resource) => (
+        <Counter
+          key={resource}
+          name={resource}
+          image={`./images/${resource}.png`}
+          value={this.state.resources[resource]}
+          increase={this.increaseBy(resource, 1)}
+          decrease={this.increaseBy(resource, -1)}
         />
-      </div>
-      <div className="ResourceValue">
-        <h2>{this.state.resources[resourceName]}</h2>
-      </div>
-      <div className="PlusMinusButtons">
-        <button
-          className="PlusMinusButton"
-          onClick={this.increaseOrDecreaseResource(resourceName, -1)}
-        >
-          -
-        </button>
-        <button
-          className="PlusMinusButton"
-          onClick={this.increaseOrDecreaseResource(resourceName, +1)}
-        >
-          +
-        </button>
-      </div>
-    </div>
-  );
-
-  drawPlusMinusControls = () => (
-    <div className="PlusMinusBoxes">
-      {Object.keys(this.state.resources).map((resource) =>
-        this.drawPlusMinusControl(resource)
-      )}
+      ))}
     </div>
   );
 
@@ -92,20 +67,19 @@ class ResourceManager extends Component {
     </div>
   );
 
-  drawButtons = () => (
-    <div className="Buttons">
-      <div className={this.getButtonStyle()} onClick={this.accept}>
-        Accept
+  drawButtons = () => {
+    const active = !Resources.isZero(this.diff);
+    return (
+      <div className="Buttons">
+        <Button label="Cancel" callback={this.cancel} active={active} />
+        <Button label="Accept" callback={this.accept} active={active} />
       </div>
-      <div className={this.getButtonStyle()} onClick={this.cancel}>
-        Cancel
-      </div>
-    </div>
-  );
+    );
+  };
 
   render = () => (
     <div className="ResourceManager">
-      {this.drawPlusMinusControls()}
+      {this.drawCounters()}
       {this.drawText()}
       {this.drawButtons()}
     </div>
