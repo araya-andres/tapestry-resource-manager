@@ -34,6 +34,9 @@ class ResourceManager extends Component {
   accept = () => {
     this.resources = this.state.resources;
     this.diff = Resources.ZERO;
+    this.setState({
+      resources: this.resources,
+    });
   };
 
   cancel = () => {
