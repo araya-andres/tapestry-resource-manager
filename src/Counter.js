@@ -1,5 +1,6 @@
 import React from "react";
 import "./Counter.css";
+import Button from "./Button";
 
 function Counter(props) {
   const description = props.hasOwnProperty("image") ? (
@@ -14,12 +15,18 @@ function Counter(props) {
         <h2>{props.value}</h2>
       </div>
       <div className="Buttons">
-        <button className="Button" onClick={props.decrease}>
-          -
-        </button>
-        <button className="Button" onClick={props.increase}>
-          +
-        </button>
+        <Button
+          label="-"
+          callback={props.decrease}
+          active="true"
+          rounded="true"
+        />
+        <Button
+          label="+"
+          callback={props.increase}
+          active="true"
+          rounded="true"
+        />
       </div>
     </div>
   );
