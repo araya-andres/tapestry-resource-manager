@@ -1,7 +1,8 @@
 #!/bin/sh
 
 cd `git rev-parse --show-toplevel`
-for file in `git diff --name-only --cached --diff-filter=AM | grep '\.js$'`; do
+file_list=`git diff --name-only --cached --diff-filter=AM | egrep '\.(js|css)$'`
+for file in $file_list; do
   prettier --write --config .prettierrc $file
   git add $file
 done
