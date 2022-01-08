@@ -1,0 +1,22 @@
+.Counter {
+  display: inline-block;
+  margin: 5px 10px 0 10px;
+}
+
+.Counter .Description {
+  display: flex;
+  justify-content: center;
+}
+
+.Counter .Value {
+  display: flex;
+  justify-content: center;
+}
+
+.Counter .Buttons .Button {
+  color: gray;
+  font-size: large;
+  height: 60px;
+  width: 60px;
+  margin: 5px 5px 0 5px;
+}

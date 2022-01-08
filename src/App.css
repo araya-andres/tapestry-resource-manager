@@ -17,32 +17,10 @@ body {
   transform: translateY(-50%);
 }
 
-.PlusMinusBoxes {
+.Counters {
   display: flex;
   justify-content: center;
   padding: 5px 10px 10px 10px;
-}
-
-.PlusMinusBox {
-  display: inline-block;
-  margin: 5px 10px 0 10px;
-}
-
-.ResourcePicture {
-  display: flex;
-  justify-content: center;
-}
-
-.ResourceValue {
-  display: flex;
-  justify-content: center;
-}
-
-.PlusMinusButton {
-  font-size: large;
-  height: 60px;
-  width: 60px;
-  margin: 5px 5px 0 5px;
 }
 
 .Text {
