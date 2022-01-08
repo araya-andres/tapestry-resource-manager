@@ -16,12 +16,12 @@ body {
 .PlusMinusBoxes {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 .PlusMinusBox {
   display: inline-block;
-  margin: 10px;
+  margin: 5px 10px 0 10px;
 }
 
 .ResourcePicture {
@@ -38,7 +38,7 @@ body {
   font-size: large;
   height: 60px;
   width: 60px;
-  margin: 5px;
+  margin: 5px 5px 0 5px;
 }
 
 .Text {
@@ -52,10 +52,9 @@ body {
 
 .Button {
   text-align: center;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0 1em 0;
   width: 50%;
-  margin: 9px;
+  margin: 5px;
   border-radius: 7px;
   color: rgb(250, 244, 230);
 }
