@@ -3,6 +3,14 @@
 Small app to track resources on a solo game of
 [Tapestry](https://boardgamegeek.com/boardgame/286096/tapestry).
 
+## Git hooks
+
+To set up the git hooks:
+
+```bash
+git config --local core.hooksPath .githooks/
+```
+
 ## Development container
 
 To build the image and fire up the container:
