@@ -4,8 +4,8 @@ import Counter from "./Counter";
 import Button from "./Button";
 
 class ResourceManager extends Component {
-  resources = Resources.ONE;
-  diff = Resources.ZERO;
+  resources = Resources.one();
+  diff = Resources.zero();
 
   constructor() {
     super();
@@ -17,7 +17,7 @@ class ResourceManager extends Component {
   increaseBy = (resource, delta) => () => {
     const resources = this.state.resources;
     const newAmount = resources[resource] + delta;
-    if (Resources.MIN <= newAmount && newAmount <= Resources.MAX) {
+    if (Resources.min() <= newAmount && newAmount <= Resources.max()) {
       this.diff = {
         ...this.diff,
         [resource]: this.diff[resource] + delta,
@@ -33,14 +33,14 @@ class ResourceManager extends Component {
 
   accept = () => {
     this.resources = this.state.resources;
-    this.diff = Resources.ZERO;
+    this.diff = Resources.zero();
     this.setState({
       resources: this.resources,
     });
   };
 
   cancel = () => {
-    this.diff = Resources.ZERO;
+    this.diff = Resources.zero();
     this.setState({
       resources: this.resources,
     });
