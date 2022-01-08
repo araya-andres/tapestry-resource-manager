@@ -4,8 +4,19 @@ body {
   font-size: large;
 }
 
+.App {
+  display: flex;
+  justify-content: center;
+}
+
 .ResourceManager {
   width: fit-content;
+}
+
+.PlusMinusBoxes {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .PlusMinusBox {
@@ -35,12 +46,12 @@ body {
 }
 
 .Buttons {
-  display: inline-flex;
+  display: flex;
 }
 
 .Button {
   text-align: center;
-  width: 138px;
+  width: 50%;
   padding: 10px;
   margin: 9px;
   border-radius: 7px;

@@ -58,23 +58,25 @@ class ResourceManager extends Component {
       <div className="ResourceValue">
         <h2>{this.state.resources[resourceName]}</h2>
       </div>
-      <button
-        className="PlusMinusButton"
-        onClick={this.increaseOrDecreaseResource(resourceName, -1)}
-      >
-        -
-      </button>
-      <button
-        className="PlusMinusButton"
-        onClick={this.increaseOrDecreaseResource(resourceName, +1)}
-      >
-        +
-      </button>
+      <div className="PlusMinusButtons">
+        <button
+          className="PlusMinusButton"
+          onClick={this.increaseOrDecreaseResource(resourceName, -1)}
+        >
+          -
+        </button>
+        <button
+          className="PlusMinusButton"
+          onClick={this.increaseOrDecreaseResource(resourceName, +1)}
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 
   drawPlusMinusControls = () => (
-    <div>
+    <div className="PlusMinusBoxes">
       {Object.keys(this.state.resources).map((resource) =>
         this.drawPlusMinusControl(resource)
       )}
