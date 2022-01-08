@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as Resources from "./Resources";
 
-const IMG_HEIGHT = 30;
+const IMG_HEIGHT = 40;
 
 class ResourceManager extends Component {
   resources = Resources.ONE;
