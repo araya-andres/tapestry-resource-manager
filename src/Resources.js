@@ -7,16 +7,18 @@ const makeConstant = (value) => ({
   culture: value,
 });
 
-export const MIN = 0;
-export const MAX = 8;
-export const ZERO = makeConstant(0);
-export const ONE = makeConstant(1);
+const ZERO = makeConstant(0);
+
+export const min = () => 0;
+export const max = () => 8;
+export const zero = () => ZERO;
+export const one = () => makeConstant(1);
 
 export const isZero = (resources) =>
   Object.values(resources).every((value) => value === 0);
 
-export const toString = (resources) => {
-  const values = Object.values(resources);
+export const toString = (diff) => {
+  const values = Object.values(diff);
   const spent = values
     .filter((x) => x < 0)
     .reduce((acc, value) => acc - value, 0);
