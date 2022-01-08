@@ -3,7 +3,11 @@ import "./Button.css";
 
 const Button = (props) => (
   <div
-    className={`Button ${props.active ? "Active" : "Inactive"}`}
+    className={[
+      "Button",
+      props.active ? "Active" : "Inactive",
+      props.rounded ? "Rounded" : "Squared",
+    ].join(" ")}
     onClick={props.callback}
   >
     {props.label}
