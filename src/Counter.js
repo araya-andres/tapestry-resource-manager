@@ -1,23 +1,23 @@
 import React from "react";
 import "./Counter.css";
 
-function Counter(args) {
-  const description = args.hasOwnProperty("image") ? (
-    <img src={args.image} alt={args.name} />
+function Counter(props) {
+  const description = props.hasOwnProperty("image") ? (
+    <img src={props.image} alt={props.name} />
   ) : (
-    <p>{args.name}</p>
+    <p>{props.name}</p>
   );
   return (
-    <div key={args.name} className="Counter">
+    <div className="Counter">
       <div className="Description">{description}</div>
       <div className="Value">
-        <h2>{args.value}</h2>
+        <h2>{props.value}</h2>
       </div>
       <div className="Buttons">
-        <button className="Button" onClick={args.decrease}>
+        <button className="Button" onClick={props.decrease}>
           -
         </button>
-        <button className="Button" onClick={args.increase}>
+        <button className="Button" onClick={props.increase}>
           +
         </button>
       </div>
