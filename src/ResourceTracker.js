@@ -1,10 +1,10 @@
-import "./ResourceManager.css";
+import "./ResourceTracker.css";
 import * as Resources from "./Resources";
 import Button from "./Button";
 import Counter from "./Counter";
 import React, { Component } from "react";
 
-class ResourceManager extends Component {
+class ResourceTracker extends Component {
   resources = Resources.one();
   diff = Resources.zero();
 
@@ -83,4 +83,4 @@ class ResourceManager extends Component {
   );
 }
 
-export default ResourceManager;
+export default ResourceTracker;

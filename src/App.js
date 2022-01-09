@@ -1,10 +1,10 @@
-import './App.css'
-import ResourceManager from './ResourceManager'
+import "./App.css";
+import ResourceTracker from "./ResourceTracker";
 
 function App() {
   return (
     <div className="App">
-        <ResourceManager/>
+      <ResourceTracker />
     </div>
   );
 }
