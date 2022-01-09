@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import "./ResourceManager.css";
 import * as Resources from "./Resources";
-import Counter from "./Counter";
 import Button from "./Button";
+import Counter from "./Counter";
+import React, { Component } from "react";
 
 class ResourceManager extends Component {
   resources = Resources.one();
@@ -61,11 +62,7 @@ class ResourceManager extends Component {
     </div>
   );
 
-  drawText = () => (
-    <div className="Text">
-      <p>{Resources.toString(this.diff)}</p>
-    </div>
-  );
+  drawText = () => <div className="Text">{Resources.toString(this.diff)}</div>;
 
   drawButtons = () => {
     const active = !Resources.isZero(this.diff);

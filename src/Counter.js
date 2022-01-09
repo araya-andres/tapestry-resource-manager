@@ -11,9 +11,7 @@ function Counter(props) {
   return (
     <div className="Counter">
       <div className="Description">{description}</div>
-      <div className="Value">
-        <h2>{props.value}</h2>
-      </div>
+      <div className="Value">{props.value}</div>
       <div className="Buttons">
         <Button
           label="-"

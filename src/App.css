@@ -9,25 +9,3 @@ body {
   height: 100%;
   justify-content: center;
 }
-
-.ResourceManager {
-  width: fit-content;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.Counters {
-  display: flex;
-  justify-content: center;
-  padding: 5px 10px 10px 10px;
-}
-
-.Text {
-  display: flex;
-  justify-content: center;
-}
-
-.Buttons {
-  display: flex;
-}
